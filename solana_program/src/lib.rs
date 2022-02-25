@@ -8,17 +8,11 @@ fn process_instruction(
     accounts: &[AccountInfo],
     instruction_data: &[u8],
 ) -> ProgramResult {
-    let key = instruction_data.first().unwrap();
-    match key {
-        0 => msg!("zero!"),
-        1 => msg!("one!"),
-        _ => msg!("error")
-    };
     msg!(
         "process_instruction: {}: {} accounts, data={:?}",
         program_id,
         accounts.len(),
-        instruction_data
+        String::from_utf8(instruction_data.to_vec()).unwrap()
     );
     Ok(())
 }
