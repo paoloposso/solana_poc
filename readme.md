@@ -26,10 +26,10 @@ WebSocket URL: wss://api.devnet.solana.com/ (computed)
 Keypair Path: /home/paolo/.config/solana/id.json 
 Commitment: confirmed 
 ```
-If you are not pointing to https://api.devnet.solana.com, run the following command:
+If it's not set to https://api.devnet.solana.com, run the following command:
 
 ```
-solana config set --url https://api.devnet.solana.com
+solana config set --url devnet
 ```
 
 Run  ```solana config get``` again to make sure you are good to go.
@@ -62,7 +62,7 @@ The program address will default to this keypair (override with --program-id):
 The Program Id will be output. In my case it was the following:
 
 ```
-Program Id: 8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1WBrx
+Program Id: 8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1WxXx
 ```
 
 ### Test the Program using a Node Client:
@@ -71,10 +71,12 @@ Program Id: 8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1WBrx
 - Open ```index.ts```
 - Change the following code snippet to include the Program Id generated when you published the program
 ```
-const programId = new web3.PublicKey('8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1WBrx');
+const programId = new web3.PublicKey('8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1WxXx');
 ```
+(use your generated program id instead)
 
 #### Running the Client
 - Navigate to the _client_test_ directory
 - Run the command ```npm install``` to install the dependencies
-- Run the command ```npx ts-node index.ts```
+- (in a different terminal) Run the command ```solana logs 8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1WxXx```. This will allow you to see the deployed Solana Program logs while executing the transaction.
+- Run the command ```npx ts-node index.ts``` to send the transaction to the Program.
