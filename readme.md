@@ -65,7 +65,9 @@ The Program Id will be output. In my case it was the following:
 Program Id: 8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1WxXx
 ```
 
-### Test the Program using a Node Client:
+## Test the Program Using a Client:
+
+## Option 1: Node
 
 #### Update the Client to run your program
 - Open ```index.ts```
@@ -80,3 +82,5 @@ const programId = new web3.PublicKey('8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1Wx
 - Run the command ```npm install``` to install the dependencies
 - (in a different terminal) Run the command ```solana logs 8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1WxXx```. This will allow you to see the deployed Solana Program logs while executing the transaction.
 - Run the command ```npx ts-node index.ts``` to send the transaction to the Program.
+
+## Option 2: Rust
