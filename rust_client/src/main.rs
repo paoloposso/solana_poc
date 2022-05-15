@@ -35,7 +35,7 @@ pub fn exec_program(payer: &Keypair) -> core::result::Result<(), Box<dyn Error>>
     let rpc_client = RpcClient::new(URL);
     let program_key = Pubkey::from_str("HAKGVjYFMfhsaTHMk215ZeVbfuYn1fJgwNsE9iJ24zZ9")?;
     
-    match execute_program(&rpc_client, &payer, program_key) {
+    match execute_program(&rpc_client, &payer, &program_key) {
         Ok(_) => {},
         Err(err) => println!("{:?}", err),
     }
@@ -45,26 +45,24 @@ pub fn exec_program(payer: &Keypair) -> core::result::Result<(), Box<dyn Error>>
 
 #[derive(BorshSerialize, BorshDeserialize)]
 enum TestInstruction {
-    Exec { lamports: u64 }
+    Exec { lamports: u64, description: String }
 }
 
-pub fn execute_program(rpc_client: &RpcClient, payer: &Keypair, program_id: Pubkey) 
+pub fn execute_program(rpc_client: &RpcClient, payer: &Keypair, program_id: &Pubkey) 
         -> core::result::Result<Signature, Box<dyn Error>> {
-
     let latest_blockhash = rpc_client.get_latest_blockhash()?;
-    let bank_instruction = TestInstruction::Exec { lamports: 50 };
+    let bank_instruction = TestInstruction::Exec { lamports: 46, description: "tst".to_owned() };
 
     let instruction = Instruction::new_with_borsh(
-        program_id,
+        *program_id,
         &bank_instruction,
         vec![],
     );
 
     println!("Executing...");
-    println!("Instruction: {:?}", instruction);
 
     let mut tx = 
-        transaction::Transaction::new_with_payer(&[instruction], Some(&payer.pubkey()));
+        transaction::Transaction::new_with_payer(&vec!(instruction), Some(&payer.pubkey()));
 
     tx.sign(&[payer], latest_blockhash);
     
