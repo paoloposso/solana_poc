@@ -78,9 +78,12 @@ const programId = new web3.PublicKey('8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1Wx
 (use your generated program id instead)
 
 #### Running the Client
-- Navigate to the _client_test_ directory
+- Navigate to the _node-client_ directory
 - Run the command ```npm install``` to install the dependencies
 - (in a different terminal) Run the command ```solana logs 8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1WxXx```. This will allow you to see the deployed Solana Program logs while executing the transaction.
 - Run the command ```npx ts-node index.ts``` to send the transaction to the Program.
 
 ## Option 2: Rust
+- navigate to the _rust_client_ directory
+- (in a different terminal) Run the command ```solana logs 8aj79DwFzfWV9qpuLAgpAkV1FKMeQpkVduiWcfg1WxXx```. This will allow you to see the deployed Solana Program logs while executing the transaction.
+- Run the comand ```cargo run```
