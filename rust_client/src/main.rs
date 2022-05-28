@@ -33,7 +33,7 @@ pub fn request_air_drop(rpc_client: &RpcClient, pub_key: &Pubkey, amount_sol: f6
 
 pub fn exec_program(payer: &Keypair) -> core::result::Result<(), Box<dyn Error>>{
     let rpc_client = RpcClient::new(URL);
-    let program_key = Pubkey::from_str("HAKGVjYFMfhsaTHMk215ZeVbfuYn1fJgwNsE9iJ24zZ9")?;
+    let program_key = Pubkey::from_str("5jLTVwUoffyDgtFyMqLPM1QaqKzM3s4Hhc78rLmbgUpd")?;
     
     match execute_program(&rpc_client, &payer, &program_key) {
         Ok(_) => {},
